@@ -1,14 +1,8 @@
-const Statistics = ({statistics}) => {
+const Statistics = ({children}) => {
     return (
-        <div>
-            <ul>
-                {
-                    statistics.map ( (stat) => {
-                       return  <li>{stat}</li>
-                    })
-                }
-            </ul>
-        </div>
+        <>
+            {children}
+        </>
     )
 };
 
