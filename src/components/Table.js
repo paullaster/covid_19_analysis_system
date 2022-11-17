@@ -1,3 +1,5 @@
+import TableItem from "./TableItem";
+
 const Table = ({statistics}) => {
     return (
         <>
@@ -12,9 +14,7 @@ const Table = ({statistics}) => {
                     {
                         statistics.map ( (stat) => {
                             return (
-                                <tr>
-                                    <td>{stat}</td>
-                                </tr>
+                                <TableItem stat={stat}/>
                             );
                         })
                     }
