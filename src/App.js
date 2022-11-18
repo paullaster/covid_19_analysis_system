@@ -5,22 +5,21 @@ import Statistics from './components/Statistics';
 import Table from './components/Table';
 
 const App = () => {
-  const [statistics, setStatistics] = useState([]);
+  const [statistics, setStatistics] = useState([{id: 1, name:'okot'}, {id: 2, name:'ochieng'}]);
   const [isError, setIsError] = useState(false);
   useEffect ( () => {
     fetch ( 'https://covid-193.p.rapidapi.com/statistics', {
       method: 'GET',
       headers: {
         'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-        'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'
       }
     })
     .then ( (response) => {
       return response.json();
     })
     .then ( (data) => {
-      setStatistics (data)
-    })
+      //setStatistics (data.response)
+     })
     .catch ( () => {
       setIsError ( true);
     })

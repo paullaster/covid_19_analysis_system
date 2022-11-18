@@ -21,7 +21,7 @@ const Table = ({statistics}) => {
                     }
                 </tbody>
                 <tfoot>
-                    <TableItemFooter />
+                    {/* <TableItemFooter /> */}
                 </tfoot>
             </table>
         </>

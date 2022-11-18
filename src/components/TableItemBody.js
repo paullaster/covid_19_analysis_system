@@ -3,7 +3,10 @@ const TableItem = ({stat}) => {
         <>
         <tr>
             <td>
-                {stat}
+                {stat.id}
+            </td>
+            <td>
+                {stat.name}
             </td>
         </tr>
         </>
