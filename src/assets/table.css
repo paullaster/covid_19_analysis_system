@@ -1,0 +1,19 @@
+
+table {
+    border: 2px solid #000;
+    width: 100%;
+}
+th, td {
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+th {
+    background-color: teal;
+    height: 5vh;
+    color: aliceblue;
+    font-size: 20px;
+    padding: 0 25px;
+}
+li {
+    list-style: none;
+}

@@ -5,9 +5,11 @@ import Statistics from './components/Statistics';
 import Table from './components/Table';
 
 const App = () => {
-  const [statistics, setStatistics] = useState([{id: 1, name:'okot'}, {id: 2, name:'ochieng'}]);
+  const [statistics, setStatistics] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect ( () => {
+    setIsLoading (true);
     fetch ( 'https://covid-193.p.rapidapi.com/statistics', {
       method: 'GET',
       headers: {
@@ -18,7 +20,8 @@ const App = () => {
       return response.json();
     })
     .then ( (data) => {
-      //setStatistics (data.response)
+      setStatistics (data.response);
+      setIsLoading (false); 
      })
     .catch ( () => {
       setIsError ( true);
@@ -27,6 +30,7 @@ const App = () => {
   return (
     <>
     <Error error={isError}/>
+    { isLoading && <p> Loading...</p>}
      <Statistics>
        <Table statistics={statistics}/>
      </Statistics>

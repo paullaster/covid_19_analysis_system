@@ -2,6 +2,7 @@ import {v4 as uuidv4} from "uuid";
 import TableItemBody from "./TableItemBody";
 import TableItemFooter from "./TableItemFooter";
 import TableItemHead from "./TableItemHead";
+import '../assets/table.css';
 
 const Table = ({statistics}) => {
     console.log(statistics)
@@ -9,7 +10,7 @@ const Table = ({statistics}) => {
         <>
             <table>
                 <thead>
-                    <TableItemHead />
+                    <TableItemHead key={uuidv4 ()} />
                 </thead>
                 <tbody>
                     {
