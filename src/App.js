@@ -3,15 +3,12 @@ import './App.css';
 import BarGraph from './components/BarGraph';
 import Error from './components/Error';
 import Form from './components/Form';
-import Select from './components/Select';
 import Statistics from './components/Statistics';
 import Table from './components/Table';
 
 const App = () => {
 
   const [statistics, setStatistics] = useState([]);
-  const [countryList, setCountryList] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [graphdata, setGraphData] = useState({});
@@ -32,15 +29,15 @@ const App = () => {
       ChartData.labels = ['2017', '2020', '2021'];
       ChartData.datasets = [
         {
-          label: ['cases'],
+          label: 'cases',
           data:[data.response[0].cases.total], 
         },
         {
-          label: ['deaths'],
+          label: 'deaths',
           data:[data.response[0].deaths.total], 
         },
         {
-          label: ['tests'],
+          label: 'tests',
           data:[data.response[0].tests.total], 
         }
       ]
@@ -50,26 +47,6 @@ const App = () => {
 };
 
  console.log (graphdata)
-  // Fetching List of Countries:
-  const FetchPreferredCountryList = () => {
-    fetch ('https://covid-193.p.rapidapi.com/countries', {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-      }
-    })
-    .then ( (response) => {
-      return response.json ();
-    })
-    .then ( (data) => {
-      setCountryList (data.response);
-      setIsLoading (false);
-    })
-    .catch ( (err) => {
-      setIsError (true);
-    } );
-  };
-
   //Fetching COVID data for countries:
   const FetchStatistics = () => {
     fetch ( 'https://covid-193.p.rapidapi.com/statistics', {
@@ -108,7 +85,7 @@ const App = () => {
     <Error error={isError}/>
     { isLoading && <p> Loading...</p>}
     <Form>
-      <Select onChange={handleSelectedCountry} countryList={countryList}/>
+
     </Form>
      <Statistics>
        <Table statistics={statistics}/>
@@ -118,7 +95,7 @@ const App = () => {
       {selectedCountry}
     </div>
     {/* Bargraph */}
-    <BarGraph graphdata ={graphdata} />
+    {/* <BarGraph graphdata ={graphdata} /> */}
 
     </>
   );

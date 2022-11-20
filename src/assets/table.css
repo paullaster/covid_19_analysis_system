@@ -1,18 +1,20 @@
 
-table {
-    border: 2px solid #000;
+table, th, td {
+    border: 1px solid #000;
+    border-collapse: collapse;
     width: 100%;
 }
-th, td {
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-}
+
+
 th {
-    background-color: teal;
-    height: 5vh;
+    background-color: black;
+    height: 10vh;
     color: aliceblue;
     font-size: 20px;
     padding: 0 25px;
+}
+td{
+    background-color: beige !important;
 }
 li {
     list-style: none;
