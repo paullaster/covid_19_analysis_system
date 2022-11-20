@@ -13,12 +13,13 @@ const App = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [graphdata, setGraphData] = useState({});
-  const [search, setSearch] = useState( []);
+  const [search, setSearch] = useState([]);
+  const [date, setDate] = useState('2022-06-06');
  
   let ChartData = {};
 
   const CovidHistoryData = () => {
-    fetch ( 'https://covid-193.p.rapidapi.com/history?country=usa&day=2020-06-02', {
+    fetch ( 'https://covid-193.p.rapidapi.com/history?country='+search+'&day='+date, {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
@@ -28,7 +29,7 @@ const App = () => {
         return response.json ();
     })
     .then ( (data) => {
-      ChartData.labels = ['2017', '2020', '2021'];
+      ChartData.labels = [data.parameters.day];
       ChartData.datasets = [
         {
           label: 'cases',
@@ -48,7 +49,6 @@ const App = () => {
     
 };
 
- console.log (graphdata)
   //Fetching COVID data for countries:
   const FetchStatistics = () => {
     fetch ( 'https://covid-193.p.rapidapi.com/statistics', {
@@ -82,9 +82,12 @@ const App = () => {
  };
 console.log ()
   const FilteredTable = statistics.filter ( (data) => {
-   return data.country === search;
-  })
-console.log ( statistics)
+   return data.country.toLowerCase ().includes (search);
+  });
+
+const handleDate = (event) => {
+  setDate (event.target.value);
+};
   return (
     <>
     <Error error={isError}/>
@@ -92,6 +95,9 @@ console.log ( statistics)
     <Form>
      <InputLabel onChange={handleSearch}>
      Search:
+     </InputLabel>
+     <InputLabel type='date' onChange={ handleDate }>
+     Date:
      </InputLabel>
     </Form>
      <Statistics>
