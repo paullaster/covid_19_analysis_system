@@ -11,9 +11,11 @@ import Table from './components/Table';
 const App = () => {
   const [statistics, setStatistics] = useState([]);
   const [countryList, setCountryList] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Fetching List of Countries:
   const FetchPreferredCountryList = () => {
     fetch ('https://covid-193.p.rapidapi.com/countries', {
       method: 'GET',
@@ -33,6 +35,7 @@ const App = () => {
     } );
   };
 
+  //Fetching COVID data for countries:
   const FetchStatistics = () => {
     fetch ( 'https://covid-193.p.rapidapi.com/statistics', {
       method: 'GET',
@@ -57,7 +60,11 @@ const App = () => {
     setIsLoading (true);
     FetchStatistics ();
     FetchPreferredCountryList ();
-  }, [])
+  }, []);
+
+ // Handling Selected country:
+ const handleSelectedCountry = () => {};
+
   return (
     <>
     <Error error={isError}/>

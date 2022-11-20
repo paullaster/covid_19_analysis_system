@@ -1,9 +1,9 @@
 import { v4 as uuidv4} from 'uuid';
 import Option from  './SelectOptions';
 
-const Select = ( {countryList}) => {
+const Select = ( {countryList, name='country'}) => {
     return (
-        <select>
+        <select name={name}>
             {
                 countryList.map ( (country) => {
                     return (
