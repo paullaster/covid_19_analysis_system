@@ -29,7 +29,7 @@ const App = () => {
         return response.json ();
     })
     .then ( (data) => {
-      ChartData.labels = ['2017', '2016', '2015', '2014'];
+      ChartData.labels = ['2017', '2020', '2021'];
       ChartData.datasets = [
         {
           label: ['cases'],
