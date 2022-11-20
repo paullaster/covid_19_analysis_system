@@ -1,11 +1,9 @@
 import { Bar} from 'react-chartjs-2';
-import {} from 'chart.js';
+import {Chart as ChartJS} from 'chart.js/auto';
 
 const BarGraph = ( {graphdata}) => {
     return (
-        <>
-        <Bar graphdata = {graphdata}/>
-        </>
+        <Bar data = {graphdata}/>
     );
 };
 export default BarGraph;

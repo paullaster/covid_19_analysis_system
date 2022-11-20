@@ -14,7 +14,6 @@ const App = () => {
   const [selectedCountry, setSelectedCountry] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const [graphdata, setGraphData] = useState({});
  
   let ChartData = {};
@@ -30,11 +29,15 @@ const App = () => {
         return response.json ();
     })
     .then ( (data) => {
-      ChartData.labels = data.parameters.day;
+      ChartData.labels = ['2017', '2016', '2015', '2014'];
       ChartData.datasets = [
         {
-          label: ['cases', 'tests', 'deaths'],
-          data:[data.response[0].cases.total, data.response[0].tests.total, data.response[0].deaths.total],
+          label: 'cases',
+          data:[data.response[0].cases.total], 
+        },
+        {
+          label: 'deaths',
+          data:[data.response[0].deaths.total], 
         }
       ]
        setGraphData (ChartData);
@@ -42,7 +45,7 @@ const App = () => {
     
 };
 
-//console.log ( ChartData.lables)
+ console.log (graphdata)
   // Fetching List of Countries:
   const FetchPreferredCountryList = () => {
     fetch ('https://covid-193.p.rapidapi.com/countries', {
@@ -111,7 +114,7 @@ const App = () => {
       {selectedCountry}
     </div>
     {/* Bargraph */}
-    {/* <BarGraph graphdata ={graphdata} /> */}
+    <BarGraph graphdata ={graphdata} />
 
     </>
   );
