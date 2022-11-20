@@ -4,7 +4,7 @@ import {} from 'chart.js';
 const BarGraph = ( {graphdata}) => {
     return (
         <>
-        <Bar />
+        <Bar graphdata = {graphdata}/>
         </>
     );
 };

@@ -5,7 +5,6 @@ import TableItemHead from "./TableItemHead";
 import '../assets/table.css';
 
 const Table = ({statistics}) => {
-    console.log(statistics)
     return (
         <>
             <table>
