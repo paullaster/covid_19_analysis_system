@@ -80,11 +80,11 @@ const App = () => {
  const handleSearch = ( event) => {
   setSearch (event.target.value);
  };
-
- const FilteredTable = () => {
-  
- };
-
+console.log ()
+  const FilteredTable = statistics.filter ( (data) => {
+   return data.country === search;
+  })
+console.log ( statistics)
   return (
     <>
     <Error error={isError}/>
@@ -95,7 +95,7 @@ const App = () => {
      </InputLabel>
     </Form>
      <Statistics>
-       <Table statistics={statistics}/>
+       <Table statistics={FilteredTable}/>
      </Statistics>
 
     
