@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import BarGraph from './components/BarGraph';
 import Error from './components/Error';
 import Form from './components/Form';
 import Select from './components/Select';
@@ -69,6 +70,10 @@ const App = () => {
      <Statistics>
        <Table statistics={statistics}/>
      </Statistics>
+
+    {/* Bargraph */}
+    <BarGraph />
+
     </>
   );
 }
