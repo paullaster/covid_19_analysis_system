@@ -32,12 +32,16 @@ const App = () => {
       ChartData.labels = ['2017', '2016', '2015', '2014'];
       ChartData.datasets = [
         {
-          label: 'cases',
+          label: ['cases'],
           data:[data.response[0].cases.total], 
         },
         {
-          label: 'deaths',
+          label: ['deaths'],
           data:[data.response[0].deaths.total], 
+        },
+        {
+          label: ['tests'],
+          data:[data.response[0].tests.total], 
         }
       ]
        setGraphData (ChartData);
