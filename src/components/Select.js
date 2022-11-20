@@ -1,13 +1,13 @@
 import { v4 as uuidv4} from 'uuid';
 import Option from  './SelectOptions';
 
-const Select = ( {countryList, name='country'}) => {
+const Select = ( {onChange, countryList, name='country'}) => {
     return (
-        <select name={name}>
+        <select  onChange={onChange} name={name}>
             {
                 countryList.map ( (country) => {
                     return (
-                        < Option key={uuidv4 ()} country={country} value={country} />
+                        < Option key={uuidv4 ()} country={country} />
                     );
                 })
             }

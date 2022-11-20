@@ -7,14 +7,42 @@ import Select from './components/Select';
 import Statistics from './components/Statistics';
 import Table from './components/Table';
 
-
 const App = () => {
+
   const [statistics, setStatistics] = useState([]);
   const [countryList, setCountryList] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [graphdata, setGraphData] = useState({});
+ 
+  let ChartData = {};
+
+  const CovidHistoryData = () => {
+    fetch ( 'https://covid-193.p.rapidapi.com/history?country=usa&day=2020-06-02', {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+        }
+    }) 
+    .then ( (response) => {
+        return response.json ();
+    })
+    .then ( (data) => {
+      ChartData.labels = data.parameters.day;
+      ChartData.datasets = [
+        {
+          label: ['cases', 'tests', 'deaths'],
+          data:[data.response[0].cases.total, data.response[0].tests.total, data.response[0].deaths.total],
+        }
+      ]
+       setGraphData (ChartData);
+    })
+    
+};
+
+//console.log ( ChartData.lables)
   // Fetching List of Countries:
   const FetchPreferredCountryList = () => {
     fetch ('https://covid-193.p.rapidapi.com/countries', {
@@ -60,22 +88,28 @@ const App = () => {
     setIsLoading (true);
     FetchStatistics ();
     FetchPreferredCountryList ();
+    CovidHistoryData ();
   }, []);
 
  // Handling Selected country:
- const handleSelectedCountry = () => {};
+ const handleSelectedCountry = ( event) => {
+    setSelectedCountry (event.target.value);
+ };
 
   return (
     <>
     <Error error={isError}/>
     { isLoading && <p> Loading...</p>}
     <Form>
-      <Select countryList={countryList}/>
+      <Select onChange={handleSelectedCountry} countryList={countryList}/>
     </Form>
      <Statistics>
        <Table statistics={statistics}/>
      </Statistics>
 
+    <div>
+      {selectedCountry}
+    </div>
     {/* Bargraph */}
     {/* <BarGraph graphdata ={graphdata} /> */}
 
