@@ -3,6 +3,7 @@ import './App.css';
 import BarGraph from './components/BarGraph';
 import Error from './components/Error';
 import Form from './components/Form';
+import InputLabel from './components/InputLabel';
 import Statistics from './components/Statistics';
 import Table from './components/Table';
 
@@ -12,6 +13,7 @@ const App = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [graphdata, setGraphData] = useState({});
+  const [search, setSearch] = useState( []);
  
   let ChartData = {};
 
@@ -71,13 +73,16 @@ const App = () => {
   useEffect ( () => {
     setIsLoading (true);
     FetchStatistics ();
-    FetchPreferredCountryList ();
     CovidHistoryData ();
   }, []);
 
  // Handling Selected country:
- const handleSelectedCountry = ( event) => {
-    setSelectedCountry (event.target.value);
+ const handleSearch = ( event) => {
+  setSearch (event.target.value);
+ };
+
+ const FilteredTable = () => {
+  
  };
 
   return (
@@ -85,15 +90,15 @@ const App = () => {
     <Error error={isError}/>
     { isLoading && <p> Loading...</p>}
     <Form>
-
+     <InputLabel onChange={handleSearch}>
+     Search:
+     </InputLabel>
     </Form>
      <Statistics>
        <Table statistics={statistics}/>
      </Statistics>
 
-    <div>
-      {selectedCountry}
-    </div>
+    
     {/* Bargraph */}
     {/* <BarGraph graphdata ={graphdata} /> */}
 

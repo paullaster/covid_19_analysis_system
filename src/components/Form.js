@@ -1,3 +1,4 @@
+import '../assets/search.css';
 const Form = ( {children}) => {
     return (
         <form>
